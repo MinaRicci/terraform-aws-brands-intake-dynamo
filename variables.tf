@@ -8,12 +8,7 @@ variable "lambdas_tracing_mode" {
   default = "PassThrough"
 }
 
-variable "lambdas_datadog_layer_arn" {
-  type    = string
-  default = ""
-}
-
-variable "lambdas_dependencies_nodejs_layer_arn" {
+variable "datadog_layer_arn" {
   type    = string
   default = ""
 }
@@ -38,17 +33,12 @@ variable "tags" {
   default = {}
 }
 
-variable "products_table_arn" {
-  type    = string
-  default = ""
-}
-
 variable "lambdas_brands_write_dynamodb_zip" {
   type    = string
   default = ""
 }
 
-variable "sfns_product_write_alerts_topic_arn" {
+variable "lambdas_brands_write_dynamodb_version" {
   type    = string
   default = ""
 }
