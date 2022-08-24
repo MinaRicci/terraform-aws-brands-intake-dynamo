@@ -1,7 +1,7 @@
 
 # Pomelo.
 
-## terraform-aws-product-write-outbound 🏗 🏢 🏬
+## Terraform-aws-brands-intake-dynamo 🏗 🏢 🏬
 
 `terraform-aws-product-brands-intake-dynamo` is a terraform module that is used to create custom AWS Lambda.
 
