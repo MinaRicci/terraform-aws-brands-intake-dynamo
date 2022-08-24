@@ -3,7 +3,7 @@
 
 ## terraform-aws-product-write-outbound 🏗 🏢 🏬
 
-`terraform-aws-product-write-outbound` is a terraform module that is used to create custom AWS Lambda / SFN resources.
+`terraform-aws-product-brands-intake-dynamo` is a terraform module that is used to create custom AWS Lambda.
 
 ## Prerequisites
 
