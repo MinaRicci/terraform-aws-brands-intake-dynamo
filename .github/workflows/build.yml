@@ -1,0 +1,46 @@
+---
+name: 'Build'
+
+on: [pull_request]
+
+jobs:
+  cognito:
+    name: 'AWS Lambda'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+
+      - name: 'Terraform Format'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.14.4
+          tf_actions_subcommand: 'fmt'
+          tf_actions_working_dir: '.'
+          tf_actions_comment: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          AWS_REGION: "ap-southeast-1"
+
+      - name: 'Terraform Init'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.14.4
+          tf_actions_subcommand: 'init'
+          tf_actions_working_dir: '.'
+          tf_actions_comment: true
+          tf_actions_cli_credentials_token: '${{ secrets.TF_API_TOKEN }}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          AWS_REGION: "ap-southeast-1"
+
+      - name: 'Terraform Validate'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.14.4
+          tf_actions_subcommand: 'validate'
+          tf_actions_working_dir: '.'
+          tf_actions_comment: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          AWS_REGION: "ap-southeast-1"
