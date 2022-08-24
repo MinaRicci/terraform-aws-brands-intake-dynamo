@@ -34,10 +34,7 @@ Before you begin, ensure you have met the following requirements:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_product_write_fn_contentful"></a> [product\_write\_fn\_contentful](#module\_product\_write\_fn\_contentful) | terraform-aws-modules/lambda/aws | 2.27.1 |
-| <a name="module_product_write_fn_shopify"></a> [product\_write\_fn\_shopify](#module\_product\_write\_fn\_shopify) | terraform-aws-modules/lambda/aws | 2.27.1 |
-| <a name="module_product_write_sfn"></a> [product\_write\_sfn](#module\_product\_write\_sfn) | terraform-aws-modules/step-functions/aws | 2.5.0 |
-
+| <a name="module_brands_write_dynamodb"></a> [product\_write\_fn\_contentful](#module\_product\_write\_fn\_contentful) | terraform-aws-modules/lambda/aws | 2.27.1 |
 ## Resources
 
 | Name | Type |
