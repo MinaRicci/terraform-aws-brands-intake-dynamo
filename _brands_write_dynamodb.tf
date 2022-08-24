@@ -1,4 +1,4 @@
-module "brands_write_dynamodb_mkp_instance" {
+module "brands_write_dynamodb" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "3.3.1"
 
@@ -41,7 +41,7 @@ module "brands_write_dynamodb_mkp_instance" {
   allowed_triggers = {
     Cloudwatch = {
       principal  = "events.amazonaws.com"
-      source_arn = aws_cloudwatch_event_rule.scheduler_brands_write_dynamodb_mkp_instance.arn
+      source_arn = aws_cloudwatch_event_rule.scheduler_brands_write_dynamodb.arn
     }
   }
 
@@ -51,7 +51,7 @@ module "brands_write_dynamodb_mkp_instance" {
     Version = var.lambdas_brands_write_dynamodb_version
     }, {
     git_commit           = "efd44fbedc9f2662ca45abacace1d08b52e2da0c"
-    git_file             = "staging/ap-southeast-1/_brands_write_dynamodb_mkp_instance.tf"
+    git_file             = "staging/ap-southeast-1/_brands_write_dynamodb.tf"
     git_last_modified_at = "2022-08-24 02:31:05"
     git_last_modified_by = "mina.r@pomelofashion.com"
     git_modifiers        = "mina.r"
@@ -65,10 +65,10 @@ module "brands_write_dynamodb_mkp_instance" {
   }
 }
 
-resource "aws_cloudwatch_event_rule" "scheduler_brands_write_dynamodb_mkp_instance" {
+resource "aws_cloudwatch_event_rule" "scheduler_brands_write_dynamodb" {
   provider = aws.staging
 
-  name                = "scheduler_brands_write_dynamodb_mkp_instance_${var.name}"
+  name                = "scheduler_brands_write_dynamodb_${var.name}"
   description         = "Every Hours At Minute 0"
   schedule_expression = "cron(0 * * * ? *)"
 
@@ -76,7 +76,7 @@ resource "aws_cloudwatch_event_rule" "scheduler_brands_write_dynamodb_mkp_instan
     Name = "brands-write-dynamodb-staging-${var.name}"
     }, {
     git_commit           = "efd44fbedc9f2662ca45abacace1d08b52e2da0c"
-    git_file             = "staging/ap-southeast-1/_brands_write_dynamodb_mkp_instance.tf"
+    git_file             = "staging/ap-southeast-1/_brands_write_dynamodb.tf"
     git_last_modified_at = "2022-08-24 02:31:05"
     git_last_modified_by = "mina.r@pomelofashion.com"
     git_modifiers        = "mina.r"
@@ -86,9 +86,9 @@ resource "aws_cloudwatch_event_rule" "scheduler_brands_write_dynamodb_mkp_instan
   })
 }
 
-resource "aws_cloudwatch_event_target" "scheduler_brands_write_dynamodb_mkp_instance_staging" {
+resource "aws_cloudwatch_event_target" "scheduler_brands_write_dynamodb_staging" {
   provider = aws.staging
 
-  rule = aws_cloudwatch_event_rule.scheduler_brands_write_dynamodb_mkp_instance.id
-  arn  = module.brands_write_dynamodb_mkp_instance.lambda_function_arn
+  rule = aws_cloudwatch_event_rule.scheduler_brands_write_dynamodb.id
+  arn  = module.brands_write_dynamodb.lambda_function_arn
 }
